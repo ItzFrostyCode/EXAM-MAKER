@@ -1,0 +1,115 @@
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0ea5e9; /* Light Blue */
+}
+
+/* Global Button & Input Reset */
+button, 
+.correct-opt, 
+.choice-btn, 
+.delete-btn,
+.start-exam,
+.delete-exam-btn {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* Sharp Corners for Containers & Cards */
+section, 
+.bg-white, 
+.bg-indigo-900,
+.glass,
+.question-card,
+.bg-indigo-50\/50 {
+  border-radius: 0 !important;
+}
+
+/* Buttons and Inputs keep their radius */
+button, 
+input, 
+textarea, 
+select,
+.letter-box,
+.choice-letter,
+.year-filter,
+.term-filter {
+  border-radius: 12px !important;
+}
+
+/* Prevent accidental highlighting of decorative text */
+.choice-letter,
+.letter-box,
+label,
+span,
+h1, h2, h3 {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Allow text selection only in inputs/textareas */
+input, textarea {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  pointer-events: auto !important;
+  cursor: text !important;
+  position: relative;
+  z-index: 10;
+}
+
+/* Question Editor Styles */
+.question-card {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.question-card:hover {
+  border-color: #0ea5e9;
+  box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.1);
+}
+
+/* Choice Input Focus */
+.choice-input:focus-within .choice-letter {
+  background-color: #0ea5e9;
+  color: white;
+}
+
+/* Mobile Specific Style Fixes */
+@media (max-width: 640px) {
+  section {
+    border-left: none;
+    border-right: none;
+  }
+}
+
+/* Glass Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(14, 165, 233, 0.2);
+}
+
+/* Success Animation */
+@keyframes success-pop {
+  0% { transform: scale(0.9); opacity: 0; }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.success-icon {
+  animation: success-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
