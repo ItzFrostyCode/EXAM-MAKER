@@ -344,4 +344,56 @@ document.addEventListener('DOMContentLoaded', () => {
     closeEditModal();
     renderSavedExams();
   };
+  // 6. Navigation Control (Tabs & Hamburger)
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  const sectionExamMaker = document.getElementById('exam-maker-section');
+  const sectionLibrary = document.getElementById('library-section');
+
+  function switchTab(tabId) {
+    if (!tabId) return;
+
+    // Buttons (Handle both mobile and desktop tabs)
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      if (btn.dataset.tab === tabId) {
+        btn.classList.add('active');
+        // If mobile version, we might want different visual state handled by CSS
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    // Sections
+    sectionExamMaker.classList.add('hidden');
+    sectionLibrary.classList.add('hidden');
+
+    if (tabId === 'creator') {
+      sectionExamMaker.classList.remove('hidden');
+    } else if (tabId === 'library') {
+      sectionLibrary.classList.remove('hidden');
+      if (typeof LibraryManager !== 'undefined') LibraryManager.render();
+    }
+
+    // Close mobile nav after selection
+    if (mobileNav) mobileNav.classList.add('hidden');
+  }
+
+  // Delegate click events for all tab buttons (desktop and mobile)
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.tab-btn');
+    if (btn && btn.dataset.tab) {
+      switchTab(btn.dataset.tab);
+    }
+  });
+
+  if (hamburgerBtn && mobileNav) {
+    hamburgerBtn.onclick = () => {
+      mobileNav.classList.toggle('hidden');
+    };
+  }
+
+  // 7. Initialize Library
+  if (typeof LibraryManager !== 'undefined') {
+    LibraryManager.init();
+  }
 });

@@ -3,5 +3,5 @@ function generateId() {
 }
 
 function showMessage(msg) {
-  alert(msg); // pwede mo palitan ng toast later
+  alert(msg); 
 }

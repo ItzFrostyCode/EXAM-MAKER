@@ -87,12 +87,49 @@ input, textarea {
   color: white;
 }
 
-/* Mobile Specific Style Fixes */
+/* Mobile Specific Style Fixes & Ultra-Narrow Support (320px) */
 @media (max-width: 640px) {
   section {
     border-left: none;
     border-right: none;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
+}
+
+@media (max-width: 340px) {
+  h1 { font-size: 1.125rem !important; }
+  .text-2xl { font-size: 1.25rem !important; }
+  .p-4, .p-8 { padding: 1rem !important; }
+  button { padding-left: 1rem !important; padding-right: 1rem !important; font-size: 0.75rem !important; }
+}
+
+/* Library Specific Styles */
+.file-card {
+  transition: all 0.2s ease;
+  border-radius: 12px !important;
+}
+
+.file-card:hover {
+  transform: translateY(-2px);
+  border-color: #0ea5e9;
+  background-color: #f0f9ff;
+}
+
+#drop-zone.drag-over {
+  background-color: #f0f9ff;
+  border-color: #0ea5e9;
+  border-style: dashed;
+}
+
+.tab-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tab-btn.active {
+  background-color: white;
+  color: #0ea5e9;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
 }
 
 /* Glass Effect */
