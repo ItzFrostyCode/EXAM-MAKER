@@ -903,8 +903,11 @@ const App = {
     if (tabQBadge) tabQBadge.innerText = `${qCount} Qs`;
     if (savedQPill) savedQPill.innerText = `${qCount} Qs`;
 
-    // Tab 1 Document Markdown
+    // Tab 1 Document Markdown & Subview Reset
     HandoutConverter.setMarkdown(exam.documentMarkdown || '');
+    if (typeof HandoutConverter.switchSubView === 'function') {
+      HandoutConverter.switchSubView('clean');
+    }
 
     // Tab 2 Questions List
     this.renderTab2QuestionsList(exam);
