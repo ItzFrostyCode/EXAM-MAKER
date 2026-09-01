@@ -1,16 +1,72 @@
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* ==========================================================================
+   Exam Maker - macOS Modern Design System (Light & Dark Mode)
+   Supports Desktop, Tablet, Mobile & Ultra-narrow (320px)
+   ========================================================================== */
+
+/* Custom Scrollbar (macOS Style) */
+::-webkit-scrollbar,
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+
+::-webkit-scrollbar-track,
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
 }
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 10px;
+
+::-webkit-scrollbar-thumb,
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 9999px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #0ea5e9; /* Light Blue */
+
+::-webkit-scrollbar-thumb:hover,
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(14, 165, 233, 0.7);
+}
+
+.dark ::-webkit-scrollbar-thumb,
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover,
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.8);
+}
+
+/* macOS Glassmorphism / Frosted Glass */
+.macos-glass-light {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-color: rgba(226, 232, 240, 0.8);
+}
+
+.dark .macos-glass-dark,
+.dark .macos-glass-light {
+  background: rgba(24, 24, 27, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-color: rgba(63, 63, 70, 0.6);
+}
+
+/* macOS Card Shadows */
+.macos-card-shadow {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+}
+
+.macos-card-shadow:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+.dark .macos-card-shadow {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+}
+
+.dark .macos-card-shadow:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(56, 189, 248, 0.3);
 }
 
 /* Global Button & Input Reset */
@@ -27,126 +83,164 @@ button,
 
 button:disabled {
   cursor: not-allowed;
+  opacity: 0.5;
 }
 
-/* Sharp Corners for Containers & Cards */
-section, 
-.bg-white, 
-.bg-indigo-900,
-.glass,
-.question-card,
-.bg-indigo-50\/50 {
-  border-radius: 0 !important;
-}
-
-/* Buttons and Inputs keep their radius */
-button, 
-input, 
-textarea, 
-select,
-.letter-box,
-.choice-letter,
-.year-filter,
-.term-filter {
-  border-radius: 12px !important;
-}
-
-/* Prevent accidental highlighting of decorative text */
-.choice-letter,
-.letter-box,
-label,
-span,
-h1, h2, h3 {
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-/* Allow text selection only in inputs/textareas */
+/* Text Selection only in inputs/textareas */
 input, textarea {
   user-select: text !important;
   -webkit-user-select: text !important;
   pointer-events: auto !important;
   cursor: text !important;
-  position: relative;
-  z-index: 10;
 }
 
-/* Question Editor Styles */
-.question-card {
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.question-card:hover {
-  border-color: #0ea5e9;
-  box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.1);
-}
-
-/* Choice Input Focus */
-.choice-input:focus-within .choice-letter {
-  background-color: #0ea5e9;
-  color: white;
-}
-
-/* Mobile Specific Style Fixes & Ultra-Narrow Support (320px) */
-@media (max-width: 640px) {
-  section {
-    border-left: none;
-    border-right: none;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
+/* Smooth Fade In Animation */
+@keyframes macosFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.985) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
 
-@media (max-width: 340px) {
-  h1 { font-size: 1.125rem !important; }
-  .text-2xl { font-size: 1.25rem !important; }
-  .p-4, .p-8 { padding: 1rem !important; }
-  button { padding-left: 1rem !important; padding-right: 1rem !important; font-size: 0.75rem !important; }
+.animate-fade-in {
+  animation: macosFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Library Specific Styles */
-.file-card {
-  transition: all 0.2s ease;
-  border-radius: 12px !important;
+/* Markdown Rendered Table & Document Styles (Clean macOS Look) */
+.markdown-rendered h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: #0f172a;
+}
+.dark .markdown-rendered h1 { color: #f8fafc; }
+
+.markdown-rendered h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #1e293b;
+}
+.dark .markdown-rendered h2 { color: #e2e8f0; }
+
+.markdown-rendered h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-top: 0.85rem;
+  margin-bottom: 0.4rem;
+  color: #334155;
+}
+.dark .markdown-rendered h3 { color: #cbd5e1; }
+
+.markdown-rendered p {
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
 }
 
-.file-card:hover {
-  transform: translateY(-2px);
-  border-color: #0ea5e9;
-  background-color: #f0f9ff;
+.markdown-rendered ul, 
+.markdown-rendered ol {
+  margin-left: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 
-#drop-zone.drag-over {
-  background-color: #f0f9ff;
-  border-color: #0ea5e9;
-  border-style: dashed;
+.markdown-rendered ul { list-style-type: disc; }
+.markdown-rendered ol { list-style-type: decimal; }
+
+.markdown-rendered table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1rem 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+.dark .markdown-rendered table {
+  border-color: #3f3f46;
 }
 
-.tab-btn {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.markdown-rendered th {
+  background-color: #f1f5f9;
+  font-weight: 700;
+  text-align: left;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+}
+.dark .markdown-rendered th {
+  background-color: #27272a;
+  color: #a1a1aa;
+  border-color: #3f3f46;
 }
 
-.tab-btn.active {
-  background-color: white;
-  color: #0ea5e9;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+.markdown-rendered td {
+  padding: 0.6rem 0.85rem;
+  font-size: 0.8rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+.dark .markdown-rendered td {
+  border-color: #27272a;
 }
 
-/* Glass Effect */
-.glass {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(14, 165, 233, 0.2);
+.markdown-rendered tr:last-child td {
+  border-bottom: none;
 }
 
-/* Success Animation */
-@keyframes success-pop {
-  0% { transform: scale(0.9); opacity: 0; }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); opacity: 1; }
+/* ==========================================================================
+   Responsive Breakpoints: Desktop, Tablet, and Mobile (Down to 320px)
+   ========================================================================== */
+
+/* Ultra-Compact Screens (320px - 360px) */
+@media (max-width: 360px) {
+  body {
+    font-size: 13px;
+  }
+
+  header {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  /* Force 1-row tab bar with smooth scroll */
+  .studio-tab-btn {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    font-size: 10px !important;
+  }
+
+  /* Single Column Card Stacking for 320px */
+  #years-cards-grid,
+  #programs-cards-grid,
+  #subjects-cards-grid,
+  #terms-cards-grid,
+  #handouts-cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.625rem !important;
+  }
+
+  .p-6 {
+    padding: 1rem !important;
+  }
 }
 
-.success-icon {
-  animation: success-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+/* Mobile & Small Tablets (< 640px) */
+@media (max-width: 639px) {
+  .drilldown-view {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+
+  #bulk-questions,
+  #bulk-answers {
+    rows: 6 !important;
+  }
 }
