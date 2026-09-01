@@ -660,7 +660,7 @@ const App = {
     this.navigateTo('handouts');
   },
 
-  startMasterRumbleAllTerms() {
+  startMasterRumbleAllTerms(mode = 'rumble') {
     if (!this.selectedSubject) return;
     const combined = Storage.getCombinedSubjectExam(
       this.selectedSubject,
@@ -674,7 +674,7 @@ const App = {
       return;
     }
 
-    QuizEngine.start(combined);
+    QuizEngine.start(combined, mode);
   },
 
   // ==========================================
@@ -857,7 +857,7 @@ const App = {
     }
   },
 
-  startRumbleAllInTerm() {
+  startRumbleAllInTerm(mode = 'rumble') {
     if (!this.selectedSubject) return;
     const combined = Storage.getCombinedSubjectExam(
       this.selectedSubject,
@@ -872,7 +872,7 @@ const App = {
       return;
     }
 
-    QuizEngine.start(combined);
+    QuizEngine.start(combined, mode);
   },
 
   // ==========================================
@@ -1030,7 +1030,7 @@ const App = {
     }
   },
 
-  handleQuickRumble() {
+  handleQuickRumble(mode = 'rumble') {
     const rawQ = document.getElementById('bulk-questions')?.value.trim();
     const rawA = document.getElementById('bulk-answers')?.value.trim();
 
@@ -1046,15 +1046,15 @@ const App = {
           }
         }
         QuizEngine.start({
-          subject: this.selectedSubject || "Quick Rumble",
-          handoutName: "Quick Exam",
+          subject: this.selectedSubject || "Quick Practice",
+          handoutName: mode === 'rumble' ? "Quick Rumble" : "Quick Sequential",
           questions: parsed
-        });
+        }, mode);
         return;
       }
     }
 
-    this.startRumbleActiveHandout();
+    this.startRumbleActiveHandout(mode);
   },
 
   handleClearAllQuestions() {
@@ -1070,7 +1070,7 @@ const App = {
     }
   },
 
-  startRumbleActiveHandout() {
+  startRumbleActiveHandout(mode = 'rumble') {
     if (!this.activeHandoutId) {
       showMessage("No active handout selected.");
       return;
@@ -1081,7 +1081,7 @@ const App = {
       this.switchStudioTab('exam');
       return;
     }
-    QuizEngine.start(exam);
+    QuizEngine.start(exam, mode);
   }
 };
 
